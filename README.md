@@ -10,7 +10,7 @@
 - создание пользовательского приложения
 
 Файлы в репозитории:
-– приложение heart-diseases-app.py для платформы streamlit.io
-– трансформеры для предобработки данных custom_transformers.py
-– дамп модели model.joblib
+- приложение heart-diseases-app.py для платформы streamlit.io
+- трансформеры для предобработки данных custom_transformers.py
+- дамп модели model.joblib
 
