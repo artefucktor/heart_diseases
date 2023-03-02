@@ -13,7 +13,7 @@ from joblib import load
 
 #%% CUSTOM TRANSFORMERS USED BY MODEL
 
-sys.path.append(os.path.dirname(__file__))
+#sys.path.append(os.path.dirname(__file__))
 from custom_transformers import age_to_year,BMITransformer,APTransformer
 
 #%% LOAD MODEL
