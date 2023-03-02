@@ -7,13 +7,12 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import time
-import os,sys
+import os
 
 from joblib import load
 
 #%% CUSTOM TRANSFORMERS USED BY MODEL
 
-sys.path.append(os.path.dirname(__file__))
 from custom_transformers import age_to_year,BMITransformer,APTransformer
 
 #%% LOAD MODEL
