@@ -86,9 +86,10 @@ risk_data = pd.DataFrame({'age'   : [age],
                           'active': [active]
                         })
 
-# predict proba to percent
+# predict proba
 
-risk = round(model.predict_proba(risk_data)[:,1][0] * 100)
+risk = model.predict_proba(risk_data)[:,1][0]
+risk_percent = risk * 100
 
 #%% FEATURE IMPORTANCES
 
@@ -126,7 +127,7 @@ to_replace  = {'common_weight':'Лишний вес',
                'alco_1':'Алкоголь',
                'active_1':'Образ жизни'}
 features_to_output['features'] = features_to_output['features'].replace(to_replace)
-features_to_output['feature_importances'] = features_to_output['feature_importances'] * risk
+features_to_output['feature_importances'] = features_to_output['feature_importances'] * risk_percent
 features_to_output = features_to_output.sort_values(by='feature_importances',ascending=False)
 
 #%% RESULT OUTPUT
@@ -147,18 +148,18 @@ st.markdown('---')
 st.subheader('Вероятность ССЗ')
 
 level_bar = st.progress(0)
-for i in range(risk):
+for i in range(round(risk_percent)):
     time.sleep(0.001)
     level_bar.progress(i)
     
 level_risk = {
-    risk < 25       : 'Низкая',
-    25 <= risk < 50 : 'Умеренная',
-    50 <= risk < 75 : 'Повышенная',
-    75 <= risk      : 'Очень высокая'
+          risk_percent < 25 : 'Низкая',
+    25 <= risk_percent < 50 : 'Умеренная',
+    50 <= risk_percent < 75 : 'Высокая',
+    75 <= risk_percent      : 'Очень высокая'
 }[True]
 
-st.subheader(str(level_risk) + ' ' + str(round(risk)) + '%') 
+st.subheader(str(level_risk) + ' ' + str(round(risk_percent)) + '%') 
 
 # output factors
 
