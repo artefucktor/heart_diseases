@@ -11,6 +11,5 @@
 
 Файлы в репозитории:
 - приложение heart-diseases-app.py для платформы streamlit.io
-- трансформеры для предобработки данных custom_transformers.py
-- дамп модели model.joblib
+- дамп модели heart_diseases_model.joblib
 
