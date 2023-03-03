@@ -13,16 +13,6 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 
 ######################################################
-#   дополнительная колонка – объединение давления  
-######################################################
-
-def add_ap(X_):
-    X_ = X_.copy()
-    X_['ap'] = X_['ap_hi'] + X_['ap_lo']
-    return X_
-
-
-######################################################
 #   пересчет возраста в годы  
 ######################################################
 
@@ -163,8 +153,15 @@ class BMITransformer(BaseEstimator, TransformerMixin):
         # если получился неадекватный ИМТ или изначально масса указана неправдоподобная
         # сбрасываем значения в nan 
         
-        X_.loc[X_['weight'] <40,'weight'] = np.nan
-        X_.loc[X_['bmi']    <15,'weight'] = np.nan
+        X_.loc[X_['weight']   <40, 'weight'] = np.nan
+        X_.loc[X_['weight'] >=200, 'weight'] = np.nan
+        X_.loc[X_['bmi']      <15, 'weight'] = np.nan
+#         X_.loc[X_['bmi']      >80, 'weight'] = np.nan
+        
+        # для огромных ИМТ – похоже что рост и массу перепутали местами
+        
+        mask_to_swap = X_.bmi>80
+        X_.loc[mask_to_swap,['height','weight']] = X_.loc[mask_to_swap,['weight','height']].values
 
         # заменяем с учетом пола и роста
         
