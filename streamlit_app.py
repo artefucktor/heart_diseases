@@ -6,13 +6,14 @@
 import streamlit as st
 import pandas as pd
 import time
+import os
 
 from joblib import load
 
 #%% LOAD MODEL
 
-model      = load('heart_diseases_model.joblib')
-preprocess = load('scaler_encoder.joblib')
+model      = load(os.path.dirname(__file__) + 'heart_diseases_model.joblib')
+preprocess = load(os.path.dirname(__file__) + 'scaler_encoder.joblib')
 
 #%% HEADER
 
