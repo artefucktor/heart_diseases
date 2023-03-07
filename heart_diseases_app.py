@@ -11,8 +11,8 @@ from joblib import load
 
 #%% LOAD MODEL
 
-model      = load('heart_diseases_model.joblib')
-preprocess = load('scaler_encoder.joblib')
+model      = load('/heart_diseases_model.joblib')
+preprocess = load('/scaler_encoder.joblib')
 
 #%% HEADER
 
