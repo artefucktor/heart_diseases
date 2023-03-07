@@ -11,7 +11,7 @@
 
 Файлы в репозитории:
 - приложение heart-diseases-app.py для платформы streamlit.io
-- дамп классификатора heart_diseases_model.joblib
+- дамп классификатора XGB_classifier.joblib
 - дамп масштабирования/кодирования признаков scaler_encoder.joblib
 - ноутбук с подготовкой модели heart_diseases_train.ipynb
 - предобработка данных custom_transformers.py
