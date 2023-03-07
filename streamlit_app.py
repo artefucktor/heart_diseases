@@ -12,8 +12,13 @@ from joblib import load
 
 #%% LOAD MODEL
 
+<<<<<<< HEAD:streamlit_app.py
 model      = load(os.path.dirname(__file__) + 'heart_diseases_model.joblib')
 preprocess = load(os.path.dirname(__file__) + 'scaler_encoder.joblib')
+=======
+model      = load('/heart_diseases_model.joblib')
+preprocess = load('/scaler_encoder.joblib')
+>>>>>>> refs/remotes/origin/main:heart_diseases_app.py
 
 #%% HEADER
 
