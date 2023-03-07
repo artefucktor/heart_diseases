@@ -12,7 +12,7 @@ from joblib import load
 
 #%% LOAD MODEL
 
-model      = load(os.path.dirname(__file__) + '/heart_diseases_model.joblib')
+model      = load(os.path.dirname(__file__) + '/XGB_classifier.joblib')
 preprocess = load(os.path.dirname(__file__) + '/scaler_encoder.joblib')
 
 #%% HEADER
