@@ -16,5 +16,4 @@
 - ноутбук с подготовкой модели heart_diseases_train.ipynb
 - предобработка данных custom_transformers.py
 
-Ссылка на приложение:
-https://heart-diseases.streamlit.app
+Ссылка на приложение https://heart-diseases.streamlit.app
