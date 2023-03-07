@@ -10,10 +10,10 @@
 - создание пользовательского приложения
 
 Файлы в репозитории:
-- приложение heart-diseases-app.py для платформы streamlit.io
-- дамп классификатора XGB_classifier.joblib
-- дамп масштабирования/кодирования признаков scaler_encoder.joblib
-- ноутбук с подготовкой модели heart_diseases_train.ipynb
-- предобработка данных custom_transformers.py
+- heart-diseases-app.py приложение для платформы streamlit.io
+- XGB_classifier.joblib дамп классификатора
+- scaler_encoder.joblib дамп масштабирования/кодирования признаков
+- heart_diseases_train.ipynb ноутбук с подготовкой модели
+- custom_transformers.py предобработка данных
 
 Ссылка на приложение https://heart-diseases.streamlit.app
