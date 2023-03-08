@@ -168,8 +168,8 @@ class APTransformer(BaseEstimator, TransformerMixin):
 
         # преобразуем нули в нан, чтобы обойтись без фильтров, одни fillna 
 
-        X_.loc[~(X_['ap_hi'].between(60,251)),'ap_hi'] = np.nan
-        X_.loc[~(X_['ap_lo'].between(40,201)),'ap_lo'] = np.nan
+        X_.loc[~(X_['ap_hi'].between(ap_hi_min,ap_hi_max)),'ap_hi'] = np.nan
+        X_.loc[~(X_['ap_lo'].between(ap_lo_min,ap_lo_max)),'ap_lo'] = np.nan
 
         # пропуски заполним средними из фита
         # по группам масса-холестерин
