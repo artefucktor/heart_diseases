@@ -45,7 +45,6 @@ if weight >height:
 
 st.subheader('Давление')
 ap1,ap2 = st.columns(2,gap='large')
-
 with ap1:
     ap_hi = st.slider('систолическое', min_value=60, max_value=240)
 with ap2:
@@ -107,8 +106,8 @@ risk_data = pd.DataFrame({'age'           : [age],
                           'smoke'         : [smoke],
                           'alco'          : [alco],
                           'active'        : [active],
-                          'test_feature'  : test_feature,
-                          'test_feature_2': test_feature_2,
+                          'test_feature'  : [test_feature],
+                          'test_feature_2': [test_feature_2],
                        })
 
 # predict proba
