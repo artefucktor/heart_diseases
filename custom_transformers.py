@@ -21,11 +21,9 @@ def set_buckets(X_):
         
     weight_bucket = [0,60,70,80,90]
     height_bucket = [0,150,160,170,180]
-    ap_bucket     = [0,100,130,160,190]
     
     X_['weight_bucket'] = X_['weight'].map(lambda x: bisect.bisect(weight_bucket, x))
     X_['height_bucket'] = X_['height'].map(lambda x: bisect.bisect(height_bucket, x))
-    X_['ap_bucket']     = X_['ap_hi'].map(lambda x: bisect.bisect(ap_bucket, x))
     
     return X_
 
