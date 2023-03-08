@@ -80,7 +80,10 @@ class BMITransformer(BaseEstimator, TransformerMixin):
         # заменяем с учетом пола и роста
         
         idx = X_.index
-        X_ = pd.merge(left=X_,right=self.weight_mean,on=self.groups,how='left').set_index(idx)
+        X_ = pd.merge(left=X_, 
+                      right=self.weight_mean, 
+                      on=self.groups, 
+                      how='left').set_index(idx)
         
         X_.loc[X_['weight'].isna(),'weight'] = X_['weight_mean']
         
@@ -167,7 +170,10 @@ class APTransformer(BaseEstimator, TransformerMixin):
         # по группам масса-холестерин
         
         idx = X_.index
-        X_ = pd.merge(left=X_,right=self.ap_mean,on=self.groups,how='left').set_index(idx)
+        X_ = pd.merge(left=X_,
+                      right=self.ap_mean,
+                      on=self.groups,
+                      how='left').set_index(idx)
         
         X_.loc[X_['ap_hi'].isna(),'ap_hi'] = X_['ap_hi_mean']
         X_.loc[X_['ap_lo'].isna(),'ap_lo'] = X_['ap_lo_mean']
