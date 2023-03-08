@@ -99,6 +99,8 @@ class APTransformer(BaseEstimator, TransformerMixin):
     
     def __init__(self):
         self.ap_mean = None
+        self.ap_hi_min, self.ap_hi_max = 60, 220
+        self.ap_lo_min, self.ap_lo_max = 40, 180
         self.groups = ['cholesterol','weight_bucket']
 
     def fit(self, X, y = None):
@@ -115,58 +117,47 @@ class APTransformer(BaseEstimator, TransformerMixin):
     
     def transform(self, X, y = None):
         X_ = X.copy()
+        ap_hi_min, ap_hi_max = self.ap_hi_min, self.ap_hi_max
+        ap_lo_min, ap_lo_max = self.ap_lo_min, self.ap_lo_max
         X_[['ap_lo','ap_hi']] = X_[['ap_lo','ap_hi']].astype('float')
     
-        # correct AP hi
-        # верхнее давление – убираем отрицательные значения 
+        # inner function to correct AP
+        # давление – убираем отрицательные значения 
         # доводим до приемлемого диапазона – единицы умножаем, а многознаки делим на 10
+        # повторяем для верхнего и для нижнего давления
+        
+        def ap_correct(ap_name,ap_min,ap_max):
+            
+            nonlocal X_
+            
+            X_[ap_name] = abs(X_[ap_name])
 
-        X_['ap_hi'] = abs(X_['ap_hi'])
+            mask_min = (X_[ap_name] >0 ) & (X_[ap_name] < ap_min)
+            mask_max = X_[ap_name] > ap_max
 
-        ap_hi_min,ap_hi_max = 60,250
+            while not X_[ mask_min ].empty:
+                X_.loc[ mask_min , ap_name] = X_[ap_name] * 10
+                mask_min = (X_[ap_name] >0 ) & (X_[ap_name] < ap_min)
 
-        mask_min = (X_['ap_hi'] >0 ) & (X_['ap_hi'] < ap_hi_min)
-        mask_max = X_['ap_hi'] > ap_hi_max
-
-        while not X_[ mask_min ].empty:
-            X_.loc[ mask_min , 'ap_hi'] = X_['ap_hi'] * 10
-            mask_min = (X_['ap_hi'] >0 ) & (X_['ap_hi'] < ap_hi_min)
-
-        while not X_[ mask_max ].empty:
-            X_.loc[ mask_max , 'ap_hi'] = X_['ap_hi'] / 10
-            mask_max = X_['ap_hi'] > ap_hi_max
-
-        # correct AP lo
-        # нижнее давление – убираем отрицательные значения 
-        # доводим до приемлемого диапазона
-
-        X_['ap_lo'] = abs(X_['ap_lo'])
-
-        ap_lo_min,ap_lo_max = 40,200
-
-        mask_min = (X_['ap_lo'] >0 ) & (X_['ap_lo'] < ap_lo_min)
-        mask_max = X_['ap_lo'] > ap_lo_max
-
-        while not X_[ mask_min ].empty:
-            X_.loc[ mask_min , 'ap_lo'] = X_['ap_lo'] * 10
-            mask_min = (X_['ap_lo'] >0 ) & (X_['ap_lo'] < ap_lo_min)
-
-        while not X_[ mask_max ].empty:
-            X_.loc[ mask_max , 'ap_lo'] = X_['ap_lo'] / 10
-            mask_max = X_['ap_lo'] > ap_lo_max
-
+            while not X_[ mask_max ].empty:
+                X_.loc[ mask_max , ap_name] = X_[ap_name] / 10
+                mask_max = X_[ap_name] > ap_max
+        
+        ap_correct('ap_hi',ap_hi_min,ap_hi_max)
+        ap_correct('ap_lo',ap_lo_min,ap_lo_max)
+        
         # меняем местами значения давления, если нижнее больше верхнего
         
         mask_to_swap = X_['ap_hi'] < X_.ap_lo
         X_.loc[mask_to_swap,['ap_hi','ap_lo']] = X_.loc[mask_to_swap,['ap_lo','ap_hi']].values
 
         # если нижнее давление неизвестно, а верхнее меньше 100,
-        # то убираем и потом заменим на среднее из фита
+        # то убираем и потом заменим на среднее
 
         X_.loc[(X_['ap_hi'] < 100) & (X_['ap_lo'] == 0),'ap_hi'] = np.nan
         X_.loc[(X_['ap_lo'] > 100) & (X_['ap_hi'] == 0),'ap_lo'] = np.nan
 
-        # преобразуем нули в нан, чтобы обойтись без фильтров, одни fillna 
+        # преобразуем оставшиеся сомнительные случаи в нан 
 
         X_.loc[~(X_['ap_hi'].between(ap_hi_min,ap_hi_max)),'ap_hi'] = np.nan
         X_.loc[~(X_['ap_lo'].between(ap_lo_min,ap_lo_max)),'ap_lo'] = np.nan
