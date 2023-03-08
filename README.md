@@ -15,5 +15,6 @@
 - scaler_encoder.joblib – дамп масштабирования/кодирования признаков
 - heart_diseases_train.ipynb – ноутбук с подготовкой модели
 - custom_transformers.py – предобработка данных
+- pairplot.png – визуализация признаков
 
 Ссылка на приложение https://heart-diseases.streamlit.app
