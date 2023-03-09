@@ -34,7 +34,7 @@
 - Train a classification model.
 - Create a user application.
 
-###Files in the repository:
+### Files in the repository:
 - heart-diseases-app.py - an application for the streamlit.io platform
 - XGB_classifier.joblib - a dump of the classifier
 - scaler_encoder.joblib - a dump of the scaler/encoder
