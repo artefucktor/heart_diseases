@@ -24,17 +24,17 @@
 
 ## Heart Diseases
 
-*Description:* This is an educational project created as part of the Yandex.Practicum Data Science Plus course.
+### Description:
+- This is an educational project created as part of the Yandex.Practicum Data Science Plus course.
 
-*Project goal:* Predict the probability of cardiovascular diseases.
+### Project goal:
+- Predict the probability of cardiovascular diseases.
 
-*Tasks:*
-
+### Tasks:
 - Train a classification model.
 - Create a user application.
 
-*Files in the repository:*
-
+###Files in the repository:
 - heart-diseases-app.py - an application for the streamlit.io platform
 - XGB_classifier.joblib - a dump of the classifier
 - scaler_encoder.joblib - a dump of the scaler/encoder
