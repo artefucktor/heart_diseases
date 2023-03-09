@@ -1,9 +1,9 @@
-## Заболевания сердца
+# Заболевания сердца
 
 Это учебный проект, созданный в рамках курса Яндекс Практикум Data Science Plus.
 
 ### Цель проекта:
-- предсказание вероятности заболеваний сердечно-сосудистой системы.
+- предсказание вероятности заболеваний сердечно-сосудистой системы
 
 ### Задачи:
 - обучение модели классификации
@@ -22,17 +22,16 @@
 
 ---
 
-## Heart Diseases
+# Heart Diseases
 
-### Description:
-- This is an educational project created as part of the Yandex.Practicum Data Science Plus course.
+This is an educational project created as part of the Yandex.Practicum Data Science Plus course
 
 ### Project goal:
-- Predict the probability of cardiovascular diseases.
+- Predict the probability of cardiovascular diseases
 
 ### Tasks:
-- Train a classification model.
-- Create a user application.
+- Train a classification model
+- Create a user application
 
 ### Files in the repository:
 - heart-diseases-app.py - an application for the streamlit.io platform
