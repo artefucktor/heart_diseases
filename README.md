@@ -1,3 +1,5 @@
+Link to webapp https://heart-diseases.streamlit.app
+
 # Заболевания сердца
 
 Это учебный проект, созданный в рамках курса Яндекс Практикум Data Science Plus.
@@ -16,8 +18,6 @@
 - heart_diseases_train.ipynb – ноутбук с подготовкой модели
 - custom_transformers.py – предобработка данных
 - pairplot.png – визуализация признаков
-
-Ссылка на приложение https://heart-diseases.streamlit.app
 
 
 ---
@@ -41,7 +41,6 @@ This is an educational project created as part of the Yandex.Practicum Data Scie
 - custom_transformers.py - data preprocessing
 - pairplot.png - feature visualization
 
-Link to webapp https://heart-diseases.streamlit.app
 
 
 
