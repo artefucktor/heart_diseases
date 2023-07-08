@@ -12,8 +12,8 @@ from joblib import load
 
 #%% LOAD MODEL
 
-model      = load(os.path.dirname(__file__) + '/XGB_classifier.joblib')
-preprocess = load(os.path.dirname(__file__) + '/scaler_encoder.joblib')
+model      = load(os.getcwd() + '/XGB_classifier.joblib')
+preprocess = load(os.getcwd() + '/scaler_encoder.joblib')
 
 #%% HEADER
 
